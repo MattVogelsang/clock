@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+
+<style>
+body{
+    display: grid;
+    place-content: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-color: lavender;
+}
+
+
+#timerField {
+    font-size: 72px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+
+</style>
+
+</head>
+<body>
+    <p id="timerField"> 5:15:30 PM</p>
+
+<script>
+
+let timerField =document.querySelector("#timerField");
+let morningOrEvening ="AM";
+
+function timer(){
+let date = new Date();
+
+let seconds = date.getSeconds();
+let hours = date.getHours();
+let minutes = date.getMinutes();
+
+if (hours >= 12){
+    morningOrEvening ="PM";
+} else {
+    morningOrEvening ="AM";
+}
+
+if (hours > 12){
+    hours -= 12;
+}
+
+let paddedSeconds = String(seconds).padStart(2,"0");
+let paddedMinutes = String(minutes).padStart(2,"0");
+
+     timerField.textContent = `${hours}:${paddedMinutes}:${paddedSeconds} ${morningOrEvening}`;
+
+     requestAnimationFrame(timer);
+}
+timer();
+
+</script>
+
+</body>
+</html>
